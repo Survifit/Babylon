@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Flask Plotlyjs Example</title>
+        <script src="three.min.js"></script>
+        <script src="gio.min.js"></script>  
+    </head>
+    <body>
+        <div id="globeArea" style="width: 200px; height: 200px"></div>
+        <script>
+            var container = document.getElementById( "globalArea" );
+            var controller = new GIO.Controller( container );
+            controller.addData( data );
+            controller.init();
+        </script>
+    </body>
+</html>
