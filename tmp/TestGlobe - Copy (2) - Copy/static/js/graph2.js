@@ -21,7 +21,7 @@ enableRotation();
 function drawGlobe() {  
     d3.queue()
         .defer(d3.json, 'https://gist.githubusercontent.com/mbostock/4090846/raw/d534aba169207548a8a3d670c9c2cc719ff05c47/world-110m.json')          
-        .defer(d3.json, 'locations.json')
+        .defer(d3.json, 'language_status_UNESCO.json')
         .await((error, worldData, locationData) => {
             svg.selectAll(".segment")
                 .data(topojson.feature(worldData, worldData.objects.countries).features)
