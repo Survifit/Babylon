@@ -29,7 +29,7 @@ d3.json('static/js/language_status_UNESCO.json', function(response) {
         //var location = response[i];
 
         if (response) {
-            coordinateArray.push([response.Longitude[i], response.Latitude[i]]);
+            coordinateArray.push([response.Longitude[i], response.Latitude[i], response.Degreeofendangerment[i]]);
         }
     }
     console.log('cooordinate array has been created');
@@ -57,8 +57,8 @@ function drawGlobe() {
                 .attr("d", path)
                 .style("stroke", "#888")//outline of countries
                 .style("stroke-width", "1px")
-                .style("fill", (d, i) => '#e5e5e5') //fill color for countries
-                .style("opacity", ".6");
+                .style("fill", (d, i) => 'white') //fill color for countries
+                .style("opacity", ".8");
                 //locations = UNESCOData;
                 drawMarkers();                   
         });
@@ -72,8 +72,8 @@ function drawGraticule() {
         .datum(graticule)
         .attr("class", "graticule")
         .attr("d", path)
-        .style("fill", "#fff") //background of globe - think this needs to be same color as overall background
-        .style("stroke", "#ccc"); //latitude and longitude lines
+        .style("fill", "black") //background of globe - think this needs to be same color as overall background
+        .style("stroke", "white"); //latitude and longitude lines
 }
 
 function enableRotation() {
@@ -100,7 +100,7 @@ function drawMarkers() {
             //console.log(data)
             const coordinate = [d[0], d[1]];
             gdistance = d3.geoDistance(coordinate, projection.invert(center)); //projection.invert converts x and y back to lat and lon
-            return gdistance > 1.57 ? 'none' : 'steelblue'; //color of dots
+            return gdistance > 1.57 ? 'none' : chooseColor(d[2]); //color of dots
         })
         .attr('r', 3); //size of the dot
     //console.log([locations.Longitude, locations.Latitude])
@@ -109,3 +109,21 @@ function drawMarkers() {
     });
 }
 
+//function to choose the color of the dots
+function chooseColor(endangermentLevel) {
+if (endangermentLevel == "Extinct") {
+    return "#DA5526";
+}
+else if (endangermentLevel == "Critically endangered") {
+    return "#F6893D";
+}
+else if (endangermentLevel == "Severely endangered") {
+    return "#FEBC38";
+}
+else if (endangermentLevel == "Definitely endangered") {
+    return "#DBC684";
+}
+else {
+    return "#697F90";
+};
+}
