@@ -13,31 +13,37 @@ const projection = d3.geoOrthographic();
 const initialScale = projection.scale();
 const path = d3.geoPath().projection(projection);
 const center = [width/2, height/2];
+//let coordinateArray= [];   
 
+var coordinateArray = [];
+
+d3.json('static/js/language_status_UNESCO.json', function(response) {
+    
+    console.log(response);
+    console.log(response.Latitude);
+    console.log(response.Latitude[1]);
+    //console.log(response.length)
+    //response.Latitude.forEach(function(d) {
+    for (var i = 0; i < 2721; i++) { //response[0].length?
+        //total response 2721
+        //var location = response[i];
+
+        if (response) {
+            coordinateArray.push([response.Longitude[i], response.Latitude[i]]);
+        }
+    }
+    console.log('cooordinate array has been created');
+    //return coordinateArray;
+    console.log(coordinateArray);
+});
+
+
+
+console.log('Hello');
 drawGlobe();    
 drawGraticule();
-enableRotation();    
+enableRotation();
 
-var url = 'static/js/language_status_UNESCO.json'
-
-d3.json(url, function(response) {
-
-    console.log(response);
-    console.log(response.Latitude)
-    console.log(response.length) //response.length isn't a thing.  What should I use instead?
-  
-    var coordinateArray = [];
-  
-    for (var i = 0; i < response.length; i++) {
-      var location = response[i];
-  
-      if (location) {
-        coordinateArray.push([location.latitude, location.longitude]);
-      }
-    }
-
-    console.log(coordinateArray)
-});
 
 function drawGlobe() {  
     d3.queue()
@@ -54,7 +60,7 @@ function drawGlobe() {
                 .style("fill", (d, i) => '#e5e5e5') //fill color for countries
                 .style("opacity", ".6");
                 //locations = UNESCOData;
-                //drawMarkers();                   
+                drawMarkers();                   
         });
 }
 
@@ -74,28 +80,32 @@ function enableRotation() {
     d3.timer(function (elapsed) {
         projection.rotate([config.speed * elapsed - 120, config.verticalTilt, config.horizontalTilt]);
         svg.selectAll("path").attr("d", path);
-        //drawMarkers();
+        drawMarkers();
     });
 }        
 
-// function drawMarkers() {
-//     const markers = markerGroup.selectAll('circle')
-//         .data(coordinateArray);
-//     markers
-//         .enter()
-//         .append('circle')
-//         .merge(markers)
-//         .attr('cx', d => projection(data)[0]) //converts latitude and longitude to x and y values
-//         .attr('cy', d => projection(data)[1]) //seems to require having the pair and then choosing which value in the array rather than just d.lon for cx and d.lat for cy
-//         .attr('fill', d => {
-//             const coordinate = [d.Longitude, d.Latitude];
-//             gdistance = d3.geoDistance(coordinate, projection.invert(center)); //projection.invert converts x and y back to lat and lon
-//             return gdistance > 1.57 ? 'none' : 'steelblue'; //color of dots
-//         })
-//         .attr('r', 7); //size of the dot
-//     console.log([locations.Longitude, locations.Latitude])
-//     markerGroup.each(function () {
-//         this.parentNode.appendChild(this);
-//     });
-// }
+function drawMarkers() {
+
+    console.log("Draw markers reached")
+    console.log(coordinateArray)
+    const markers = markerGroup.selectAll('circle')
+        .data(coordinateArray);
+    markers
+        .enter()
+        .append('circle')
+        .merge(markers)
+        .attr('cx', d => projection(d)[0]) //converts latitude and longitude to x and y values
+        .attr('cy', d => projection(d)[1]) //seems to require having the pair and then choosing which value in the array rather than just d.lon for cx and d.lat for cy
+        .attr('fill', d => {
+            //console.log(data)
+            const coordinate = [d[0], d[1]];
+            gdistance = d3.geoDistance(coordinate, projection.invert(center)); //projection.invert converts x and y back to lat and lon
+            return gdistance > 1.57 ? 'none' : 'steelblue'; //color of dots
+        })
+        .attr('r', 3); //size of the dot
+    //console.log([locations.Longitude, locations.Latitude])
+    markerGroup.each(function () {
+        this.parentNode.appendChild(this);
+    });
+}
 
