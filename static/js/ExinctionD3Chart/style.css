@@ -1,0 +1,81 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+h1 {
+  font-size: 40px;
+  font: open-sans;
+  color: dimgrey;
+}
+
+.title {
+  margin-left: 250px;
+  padding-bottom: 0px;
+
+}
+.axis {
+  font: 14px sans-serif;
+  
+}
+
+.line {
+  fill: none;
+  stroke: #F6893D;
+  stroke-width: 6px;
+}
+
+.chart {
+  position: absolute;
+  top: 290px;
+  left: 100px;
+  z-index: -1;
+  display: block;
+  width: 800px;
+  height: 600px;
+  content: " ";
+  background-image: url("Mandaic_sample.png");
+  background-repeat: no-repeat;
+  background-position: 50;
+  background-size: 100%;
+  opacity: 0.08;
+}
+
+
+
+.axis-text {
+  font: 14px sans-serif;
+  font-weight: bold;
+  text-anchor: middle;
+}
+
+.circles {
+  fill: #ffcc0000;
+  
+}
+.circles:hover {
+  fill: #FFA500;
+  cursor: pointer
+}
+  
+
+
+.tooltip {
+  position: absolute;
+  width: 350px;
+  height: 125px;
+  padding: 10px;
+  padding-right: 30px;
+  padding-top: 8px;
+  font: 12px sans-serif;
+  color: darkorange;
+  text-align: left;
+  background: white;
+  border: 0;
+  border-radius: 10px;
+}
+
+
+
+
