@@ -29,7 +29,7 @@ d3.json('static/js/language_status_UNESCO.json', function(response) {
         //var location = response[i];
 
         if (response) {
-            coordinateArray.push([response.Longitude[i], response.Latitude[i], response.Degreeofendangerment[i]]);
+            coordinateArray.push([response.Longitude[i], response.Latitude[i], response.Degreeofendangerment[i], response.Numberofspeakers[i]]);
         }
     }
     console.log('cooordinate array has been created');
@@ -96,6 +96,7 @@ function drawMarkers() {
         .merge(markers)
         .attr('cx', d => projection(d)[0]) //converts latitude and longitude to x and y values
         .attr('cy', d => projection(d)[1]) //seems to require having the pair and then choosing which value in the array rather than just d.lon for cx and d.lat for cy
+        //.attr('cz', d => projection(d)[3])
         .attr('fill', d => {
             //console.log(data)
             const coordinate = [d[0], d[1]];

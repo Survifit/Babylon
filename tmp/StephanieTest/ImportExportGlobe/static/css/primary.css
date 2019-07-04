@@ -41,20 +41,20 @@ a {
 
 }
 
-#changedArea {
+/*#changedArea {
 
     width: 50%;
     height: 100%;
     float: left;
 
-}
+}*/
 
 .originalTitle {
 
     top: 0;
     color: white;
     line-height: 25px;
-    width: 50%;
+    width: 100%;
     position: fixed;
     box-sizing: border-box;
     padding-left: 20px;
@@ -62,7 +62,7 @@ a {
 
 }
 
-.changedTitle {
+/*.changedTitle {
 
     top:0;
     left: 50%;
@@ -74,7 +74,7 @@ a {
     padding-left: 20px;
     font-family: 'Open Sans', sans-serif;
 
-}
+}*/
 
 html, body {
 
