@@ -1,6 +1,6 @@
 ISOCode,Name,lat,lon,name
 NL,Dutch,52.5,6,Netherlands
-C,Mapudungun,-38,-72,Chile
+CL,Mapudungun,-38,-72,Chile
 US,Algonquian (Powhatan),43.2567,-79.8691,United States
 DZ,Arabic,25,42,Algeria
 IE,Celtic,50.1186,-5.53715,Ireland
@@ -34,7 +34,7 @@ NO,Middle North Germanic,60,11,Norway
 CA,Mikmaq,45,-63,Canada
 MN,Mongolian,47,105,Mongolia
 MX,Nahuatl,19.4333,-99.1333,Mexico
-US,Narragansett,42.6667,-73.5,UnitedStates
+US,Narragansett,42.6667,-73.5,United States
 NO,Norwegian,61,8,Norway
 FR,Occitan,44,2,France
 IN,Sanskrit,25.282,82.9563,India
@@ -46,9 +46,9 @@ DK,Proto-Germanic,55.5,9,Denmark
 IQ,Proto-Semitic,33,40,Iraq
 GB,Gaelic (Scottish),57,-4,Scotland
 PF,Tahitian,-17.6667,-149.583,Tahiti
-BS,Taino,25.0343,-77.3963,TheBahamas
+BS,Taino,25.0343,-77.3963,The Bahamas
 IN,Tamil,11,78.5,India
 BR,Tupí,-6,-36,Brazil
 GB,Welsh,52,-3,Wales
 SN,Wolof,15.25,-16,Senegal
-GB,English,51,0,UnitedKingdom
+GB,English,51,0,United Kingdom
