@@ -48,8 +48,8 @@ enableRotation();
 function drawGlobe() {  
     d3.queue()
         .defer(d3.json, 'https://gist.githubusercontent.com/mbostock/4090846/raw/d534aba169207548a8a3d670c9c2cc719ff05c47/world-110m.json')          
-        .defer(d3.json, 'static/js/language_status_UNESCO.json')
-        .await((error, worldData, UNESCOData) => { //names the two data sources - i think....
+        //.defer(d3.json, 'static/js/language_status_UNESCO.json')
+        .await((error, worldData) => { //names the two data sources - i think....
             svg.selectAll(".segment")
                 .data(topojson.feature(worldData, worldData.objects.countries).features)
                 .enter().append("path")
@@ -127,3 +127,29 @@ else {
     return "#697F90";
 };
 }
+
+// Create a legend to display information about our map
+var colorList = {"Extinct": "#DA5526", "Critically Endangered": "#F6893D", "Severely Endangered": "#FEBC38", "Definitely Endangered": "#DBC684", "Vulnerable": "#697F90"};
+
+colorize = function(colorList) {
+    var globeLegend = document.getElementById('globeLegend');
+  
+    for (var key in colorList) {
+        var boxContainer = document.createElement("DIV");
+        var box = document.createElement("DIV");
+        var label = document.createElement("SPAN");
+
+        label.innerHTML = key;
+        label.className = "label";
+        box.className = "box";
+        box.style.backgroundColor = colorList[key];
+
+        boxContainer.appendChild(box);
+        boxContainer.appendChild(label);
+
+        globeLegend.appendChild(boxContainer);
+
+   }
+}
+
+colorize(colorList);

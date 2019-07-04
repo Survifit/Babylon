@@ -6,16 +6,34 @@
     <title>Language Globe</title>
       
     <!-- Our CSS -->
-   <!--<link rel="stylesheet" type="text/css" href="css/style.css"> MAY NOT NEED THIS-->
+   <!--<link rel="stylesheet" type="text/css" href="css/style.css">-->
 
     <!-- D3 -->
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://d3js.org/topojson.v1.min.js"></script>
+
+    <style>
+        .box {
+            display: inline-block;
+            height: 20px; 
+            width: 20px; 
+            border: 2px solid;
+            }
+        .label{
+            color: white;
+            font-family: 'Open Sans', sans-serif;
+        }
+        #globeLegend {
+            margin-top: -150px;
+        }
+     </style>
 </head>
 
 <body>
     <!-- Placeholder for Globe-->
     <svg style="background-color:black"></svg>
+    <!-- Placeholder for Legend-->
+    <div id="globeLegend"></div>
 
     <!-- Our JavaScript -->
     <script type="text/javascript" src="static/js/graph2.js"></script>
