@@ -18,7 +18,7 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db/bellybutton.sqlite"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db/languages.sqlite"
 db = SQLAlchemy(app)
 
 # reflect an existing database into a new model
@@ -26,79 +26,91 @@ Base = automap_base()
 # reflect the tables
 Base.prepare(db.engine, reflect=True)
 
-# Save references to each table
-Samples_Metadata = Base.classes.sample_metadata
-Samples = Base.classes.samples
+# # Save references to each table
+StatusUNESCO = Base.classes.language_status_UNESCO
+# Samples = Base.classes.samples
 
-
+#Page routes
+#Home-page (globe graph)
 @app.route("/")
 def index():
     """Return the homepage."""
     return render_template("index.html")
 
+#Statistics
+@app.route("/statistics")
+def statistics():
+    """Return the statistics charts"""
+    return render_template("statistics.html")
 
-@app.route("/names")
-def names():
-    """Return a list of sample names."""
+#tables
+@app.route("/tables")
+def tables():
+    """Return the data tables"""
+    return render_template("tables.html")
 
-    # Use Pandas to perform the sql query
-    stmt = db.session.query(Samples).statement
-    df = pd.read_sql_query(stmt, db.session.bind)
+#Network diagrams
+@app.route("/english")
+def english():
+    """Return the language network graphs"""
+    return render_template("english.html")
 
-    # Return a list of the column names (sample names)
-    return jsonify(list(df.columns)[2:])
+# @app.route("/names")
+# def names():
+#     """Return a list of sample names."""
+
+#     # Use Pandas to perform the sql query
+#     stmt = db.session.query(Samples).statement
+#     df = pd.read_sql_query(stmt, db.session.bind)
+
+#     # Return a list of the column names (sample names)
+#     return jsonify(list(df.columns)[2:])
 
 
-@app.route("/metadata/<sample>")
-def sample_metadata(sample):
-    """Return the MetaData for a given sample."""
+@app.route("/api/unesco")
+def unesco():
+    """Return the UNESCOData"""
     sel = [
-        Samples_Metadata.sample,
-        Samples_Metadata.ETHNICITY,
-        Samples_Metadata.GENDER,
-        Samples_Metadata.AGE,
-        Samples_Metadata.LOCATION,
-        Samples_Metadata.BBTYPE,
-        Samples_Metadata.WFREQ,
+        StatusUNESCO.ID,
+        StatusUNESCO.Countries,
     ]
 
-    results = db.session.query(*sel).filter(Samples_Metadata.sample == sample).all()
+    results = db.session.query(*sel).all()
 
     # Create a dictionary entry for each row of metadata information
-    sample_metadata = {}
+    UNESCOdata = {}
+    UNESCOdata["ID"] = []
+    UNESCOdata["Countries"] = []
     for result in results:
-        sample_metadata["SAMPLE"] = result[0]
-        sample_metadata["ETHNICITY"] = result[1]
-        sample_metadata["GENDER"] = result[2]
-        sample_metadata["AGE"] = result[3]
-        sample_metadata["LOCATION"] = result[4]
-        sample_metadata["BBTYPE"] = result[5]
-        sample_metadata["WFREQ"] = result[6]
+        print(result[0])
+        UNESCOdata["ID"].append(result[0])
+        UNESCOdata["Countries"].append(result[1])
+        
 
-    print(sample_metadata)
-    return jsonify(sample_metadata)
+    print(UNESCOdata)
+    return jsonify(UNESCOdata)
 
 
-@app.route("/samples/<sample>")
-def samples(sample):
-    """Return `otu_ids`, `otu_labels`,and `sample_values`."""
-    stmt = db.session.query(Samples).statement
-    df = pd.read_sql_query(stmt, db.session.bind)
+# @app.route("/samples/<sample>")
+# def samples(sample):
+#     """Return `otu_ids`, `otu_labels`,and `sample_values`."""
+#     stmt = db.session.query(Samples).statement
+#     df = pd.read_sql_query(stmt, db.session.bind)
 
-    # Filter the data based on the sample number and
-    # only keep rows with values above 1
-    sample_data = df.loc[df[sample] > 1, ["otu_id", "otu_label", sample]]
+#     # Filter the data based on the sample number and
+#     # only keep rows with values above 1
+#     sample_data = df.loc[df[sample] > 1, ["otu_id", "otu_label", sample]]
 
-    # Sort by sample
-    sample_data.sort_values(by=sample, ascending=False, inplace=True)
+#     # Sort by sample
+#     sample_data.sort_values(by=sample, ascending=False, inplace=True)
 
-    # Format the data to send as json
-    data = {
-        "otu_ids": sample_data.otu_id.values.tolist(),
-        "sample_values": sample_data[sample].values.tolist(),
-        "otu_labels": sample_data.otu_label.tolist(),
-    }
-    return jsonify(data)
+#     # Format the data to send as json
+#     data = {
+#         "otu_ids": sample_data.otu_id.values.tolist(),
+#         "sample_values": sample_data[sample].values.tolist(),
+#         "otu_labels": sample_data.otu_label.tolist(),
+#     }
+#     return jsonify(data)
 
 
 if __name__ == "__main__":
