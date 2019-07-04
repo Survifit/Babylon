@@ -1,5 +1,5 @@
-const width = 960;
-const height = 500;
+const width = 1000;
+const height = 650;
 const config = {
     speed: 0.005,
     verticalTilt: -30,
