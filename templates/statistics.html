@@ -22,19 +22,29 @@
     <body>
         <div class="container">
             <div class="row">
-                <div class="col-md-2" style="background-color:#697F90">
-                    <nav class="nav sticky-top flex-column">
-                        <a class="nav-link " href="/">World Languages</a>
-                        <a class="nav-link" href="/english">Evolution</a>
-                        <a class="nav-link active" href="/statistics">Death</a>                        
-                        <a class="nav-link" href="/tables">Tables</a>
+                <div class="col-md-2 leftside" >
+                    <img src="../static/images/Babylon.png" style="max-width: 90%; padding-top: 5%; padding-left: 5%; padding-bottom:10px">
+                    
+                    <nav class="nav sticky-toop flex-column nav-pills">
+                        <a class="nav-link border border-dark border-rounded" href="/">World Languages</a>
+                        <a class="nav-link border border-dark border-rounded" href="/english">Evolution</a>
+                        <a class="nav-link border border-dark border-rounded active" href="/statistics">Death</a>                        
+                        <a class="nav-link border border-dark border-rounded" href="/tables">Tables</a>
                     </nav>
+
+                    <img src="../static/images/Babylon.png" style="max-width: 90%; padding-top: 5%; padding-left: 5%">
                 </div>
-                <div class="col-md-10" >
+                <div class="col-md-8" >
                     <header class="title">
                         <h1>Language Deaths Since 1900</h1>
                     </header>
-                    <div id="langDeaths"></div>
+                    <div id="langDeaths">
+                        <div class="chart"></div>
+                    </div>  
+                </div>
+                <div class="col-md-2 rightside">
+
+                    <p style="padding-top: 200px"><strong>“Gone. The saddest word in the language. In any language.”</strong><i>- Mark Slouka</i></p>
                     
                 </div>
             </div>

@@ -11,7 +11,7 @@ h1 {
 }
 
 .title {
-  margin-left: 250px;
+  text-align: center;
   padding-bottom: 0px;
 
 }
@@ -26,20 +26,40 @@ h1 {
   stroke-width: 6px;
 }
 
-.chart {
-  position: absolute;
+/* .chart {
+  position: relative;
   top: 290px;
   left: 100px;
   z-index: -1;
   display: block;
-  width: 800px;
-  height: 600px;
+  width: 100%;
+  height: 500%;
   content: " ";
   background-image: url("Mandaic_sample.png");
   background-repeat: no-repeat;
   background-position: 50;
   background-size: 100%;
-  opacity: 0.08;
+  opacity: .08;
+} */
+
+.chart {
+  position: absolute;
+  top: 150px;
+  left: 10px;
+  z-index: -1;
+  display: block;
+  width: 100%;
+  height: 400px;
+  content: " ";
+  background-image: url("Mandaic_sample.png");
+  background-repeat: no-repeat;
+  background-position: 50;
+  background-size: 100%;
+  opacity: .08;
+}
+
+.svg {
+  z-index: -1;
 }
 
 
@@ -61,7 +81,7 @@ h1 {
   
 
 
-.tooltip {
+/* .tooltip {
   position: absolute;
   width: 350px;
   height: 125px;
@@ -74,6 +94,20 @@ h1 {
   background: white;
   border: 0;
   border-radius: 10px;
+} */
+.tooltip {
+  position: relative;
+  
+  padding: 10px;
+  padding-right: 30px;
+  padding-top: 8px;
+  font: 12px sans-serif;
+  color: darkorange;
+  text-align: left;
+  background: white;
+  border: 0;
+  border-radius: 10px;
+  opacity: 1;
 }
 
 

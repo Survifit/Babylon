@@ -10,9 +10,8 @@
             <!--General-->
             <link rel="stylesheet" href="../static/css/style.css">
             <!-- For families map -->
-            <link rel="stylesheet" type="text/css" href="../static/js/LeafletAmericas/style.css">
-            <!-- For import/export globe-->
-            <link rel="stylesheet" type="text/css" href="../static/js/ImportExportGlobe/css/primary.css">
+            <!-- <link rel="stylesheet" type="text/css" href="../static/js/LeafletAmericas/style.css"> -->
+
         <!--Script Files-->
             <!--Bootstrap 4.1-->
             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -36,15 +35,21 @@
     <body>
         <div class="container">
             <div class="row">
-                <div class="col-md-2" style="background-color:white">
-                    <nav class="nav sticky-top flex-column">
-                        <a class="nav-link " href="/">World Languages</a>
-                        <a class="nav-link active" href="/english">Evolution</a>
-                        <a class="nav-link" href="/statistics">Death</a>                        
-                        <a class="nav-link" href="/tables">Tables</a>
+                <div class="col-md-2 leftside">
+                    <nav class="nav sticky-top flex-column nav-pills">
+                    <img src="../static/images/Babylon.png" style="max-width: 90%; padding-top: 5%; padding-left: 5%; padding-bottom:10px">
+                    
+                    
+                        <a class="nav-link border border-dark border-rounded" href="/">World Languages</a>
+                        <a class="nav-link border border-dark border-rounded active" href="/english">Evolution</a>
+                        <a class="nav-link border border-dark border-rounded" href="/statistics">Death</a>                        
+                        <a class="nav-link border border-dark border-rounded" href="/tables">Tables</a>
+                    
+
+                    <img src="../static/images/Babylon.png" style="max-width: 90%; padding-top: 5%; padding-left: 5%">
                     </nav>
                 </div>
-                <div class="col-md-10" >
+                <div class="col-md-8" >
                         <nav id="langEvolutionNav" class="navbar sticky-top navbar-light bg-light" >
                                 <a class="navbar-brand" href="#families">Evolution of Language</a>
                                 <ul class="nav  ">
@@ -61,20 +66,39 @@
                         </nav>
                               <div data-spy="scroll" data-target="#langEvolutionNav" data-offset="0">
                                 
-                                <h4 id="families" style="padding-top:50px">Language Families Western Hemisphere</h4>
-                                    <div id="langMap" style="height: 500px; background-color:#FEBC38"></div>
-                                    <div id="text" style="width: 100%; height: 150px; background-color:#DBC684"></div>
+                                <h4 id="families" style="padding-top:60px">Language Families Western Hemisphere</h4>
+                                    <div id="langMap" style="height: 525px; background-color:#DBC684"></div>
+                                    <div id="text" style="width: 100%; height: 150px"></div>
                                 
-                                <h4 id="imports" style="padding-top:50px">Countries Contributing to British English</h4>
-                                    <div id="importMap" style="height:500px;"></div>
-                                
-                                <h4 id="contributors" style="padding-top:50px">Languages Contributing the Most Words to British English</h4>
-                                    <img id="wordCloud" style="height:500px" src="../static/images/contribWordcloud.png">
+                                <a href="/spam">
+                                    <img src="../static/images/spam-wall.jpg" style="height:50px; width:100%; margin-top:100px; margin-bottom:100px">
+                                </a>
 
+                                <h4 id="imports" style="padding-top:60px">Countries Contributing to British English</h4>
+                                    <div id="importMap" style="height:500px;"></div>
+                                    
+                                <a href="/spam">
+                                    <img src="../static/images/spam-wall.jpg" style="height:50px; width:100%; margin-top:100px; margin-bottom:100px">
+                                </a>
+
+                                <h4 id="contributors" style="padding-top:60px">Languages Contributing the Most Words to British English</h4>
+                                    <span>
+                                    <img id="wordCloud" style="height:500px" src="../static/images/contribWordcloud.png">
+                                    
+                                    <p style="margin-top:250px">Latin. French. Greek.<br>The three languages loaning the most words to English according to the WOLD English Vocabulary dataset are Latin, French, and Greek. </p>
+                                    </span>
                               </div>
 
                     
                         
+                    </div>
+                    <div class="col-md-2 rightside">
+                        <p style="margin-top: 300px"><strong>“Because without our language, we have lost ourselves. Who are we without our words?”</strong><i>- Melina Marchetta</i></p>
+                        
+                        <p style="margin-top: 900px"><strong>53 Languages. 31 Countries.<br><br> Each country with a language that loans word(s) to the WOLD English Vocabulary are connected to Great Britain with an in-line. Each line’s width and luminosity correlates with the number of words loaned to English.</strong></p>
+                    
+                        <p style="margin-top: 500px"><strong>“A man with a scant vocabulary will almost certainly be a weak thinker. The richer and more copious one's vocabulary and the greater one's awareness of fine distinctions and subtle nuances of meaning, the more fertile and precise is likely to be one's thinking. Knowledge of things and knowledge of the words for them grow together. If you do not know the words, you can hardly know the thing.”</strong><i>- Henry Hazlitt</i></p>
+
                     </div>
                     
                 </div>

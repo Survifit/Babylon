@@ -42,18 +42,44 @@
     <body>
         <div class="container">
             <div class="row">
-                <div class="col-md-2" style="background-color:#697F90">
-                    <nav class="nav sticky-toop flex-column">
-                        <a class="nav-link active" href="/">World Languages</a>
-                        <a class="nav-link" href="/english">Evolution</a>
-                        <a class="nav-link" href="/statistics">Death</a>                        
-                        <a class="nav-link" href="/tables">Tables</a>
+                <div class="col-md-2 leftside" >
+                    <a href="../static/images/Babylon.png">
+                    <img src="../static/images/Babylon.png" style="max-width: 90%; padding-top: 5%; padding-left: 5%; padding-bottom:10px">
+                    </a>
+                    <nav class="nav sticky-toop flex-column nav-pills">
+                        <a class="nav-link border border-dark border-rounded active" href="/">World Languages</a>
+                        <a class="nav-link border border-dark border-rounded" href="/english">Evolution</a>
+                        <a class="nav-link border border-dark border-rounded" href="/statistics">Death</a>                        
+                        <a class="nav-link border border-dark border-rounded" href="/tables">Tables</a>
                     </nav>
+
+                    <img src="../static/images/Babylon.png" style="max-width: 90%; padding-top: 5%; padding-left: 5%">
+
                 </div>
-                <div class="col-md-10" >
+                <div class="col-md-8" >
                     <div style="height:50px; width:100%; background-color:black"></div>
-                    <svg style="width: 100%; height: 90%; min-height:450px; background-color:black"></svg>
+                    <svg style="width: 100%; height: 500px; background-color:black"></svg>
                     <div id="globeLegend" ></div>
+                    <div style="height:50px; width:100%; background-color:black"></div>
+                    <div style="height:auto; width:100%; background-color:bisque">
+                        <p>This globe shows language locations around the world color-coded by endangered status</p>
+                    </div>
+                </div>
+                <div class="col-md-2 rightside">
+                    <p style="padding-top: 10%"><strong>"The limits of my language means the limits of my world"</strong><i>- Ludwig Wittgenstein</i></p>
+                    <div class="thumbnail" style="padding-top: 5%">
+                        <!-- Place the anchor tag here to cover both your caption and image -->
+                        <a href="../static/images/EndangeredPie.png" class="thumbnail">
+                            <img src="../static/images/EndangeredPie.png" alt="..." class="img-thumbnail">
+                            <div class="caption">
+                                <h4 class="">Endangered Languages by Percent</h4>
+                                
+                            </div>
+                            
+                        </a>
+                        <!-- Anchor tag ends covering both image and caption -->
+                    </div>
+                    <p style="padding-top: 10%"><strong>“If you talk to a man in a language he understands, that goes to his head. If you talk to him in his language, that goes to his heart.”</strong><i>- Nelson Mandela</i></p>
                 </div>
             </div>
         </div>

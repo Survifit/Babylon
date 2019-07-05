@@ -13,15 +13,14 @@ const projection = d3.geoOrthographic();
 const initialScale = projection.scale();
 const path = d3.geoPath().projection(projection);
 const center = [width/2, height/2];
-//let coordinateArray= [];   
 
 var coordinateArray = [];
 
-d3.json('../static/js/language_status_UNESCO.json', function(response) {
+d3.json('/api/unesco', function(response) {
     
-    console.log(response);
-    console.log(response.Latitude);
-    console.log(response.Latitude[1]);
+    //console.log(response);
+    //console.log(response.Latitude);
+    //console.log(response.Degreeofendangerment[1]);
     //console.log(response.length)
     //response.Latitude.forEach(function(d) {
     for (var i = 0; i < 2721; i++) { //response[0].length?
@@ -32,9 +31,9 @@ d3.json('../static/js/language_status_UNESCO.json', function(response) {
             coordinateArray.push([response.Longitude[i], response.Latitude[i], response.Degreeofendangerment[i]]);
         }
     }
-    console.log('cooordinate array has been created');
+    //console.log('cooordinate array has been created');
     //return coordinateArray;
-    console.log(coordinateArray);
+    //console.log(coordinateArray);
 });
 
 
@@ -85,8 +84,8 @@ function enableRotation() {
 
 function drawMarkers() {
 
-    console.log("Draw markers reached")
-    console.log(coordinateArray)
+    //console.log("Draw markers reached")
+    //console.log(coordinateArray)
     const markers = markerGroup.selectAll('circle')
         .data(coordinateArray);
     markers

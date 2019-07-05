@@ -28,6 +28,7 @@ Base.prepare(db.engine, reflect=True)
 
 # # Save references to each table
 StatusUNESCO = Base.classes.language_status_UNESCO
+importData = Base.classes.importdata
 # Samples = Base.classes.samples
 
 #Page routes
@@ -49,68 +50,64 @@ def tables():
     """Return the data tables"""
     return render_template("tables.html")
 
-#Network diagrams
+#Language families and english details
 @app.route("/english")
 def english():
     """Return the language network graphs"""
     return render_template("english.html")
 
-# @app.route("/names")
-# def names():
-#     """Return a list of sample names."""
-
-#     # Use Pandas to perform the sql query
-#     stmt = db.session.query(Samples).statement
-#     df = pd.read_sql_query(stmt, db.session.bind)
-
-#     # Return a list of the column names (sample names)
-#     return jsonify(list(df.columns)[2:])
+#Spam 'easter egg' page
+@app.route("/spam")
+def spam():
+    """Return the hidden Spam page"""
+    return render_template("spam.html")
 
 
 @app.route("/api/unesco")
 def unesco():
     """Return the UNESCOData"""
     sel = [
-        StatusUNESCO.ID,
-        StatusUNESCO.Countries,
+        StatusUNESCO.Latitude,
+        StatusUNESCO.Longitude,
+        StatusUNESCO.Degreeofendangerment
+    ]
+
+    #results = db.session.query(*sel).all()
+    results = db.session.query(*sel).all()
+    # Create a dictionary entry for each row of metadata information
+    UNESCOdata = {}
+    UNESCOdata["Latitude"] = []
+    UNESCOdata["Longitude"] = []
+    UNESCOdata["Degreeofendangerment"] = []
+    for result in results:
+        UNESCOdata["Latitude"].append(result[0])
+        UNESCOdata["Longitude"].append(result[1])
+        UNESCOdata["Degreeofendangerment"].append(result[2])
+        
+
+    #print(results)
+    return jsonify(UNESCOdata)
+
+@app.route("/api/import")
+def importRoute():
+    """Return the import language data"""
+    sel = [
+        importData.e,
+        importData.i,
+        importData.v 
     ]
 
     results = db.session.query(*sel).all()
 
-    # Create a dictionary entry for each row of metadata information
-    UNESCOdata = {}
-    UNESCOdata["ID"] = []
-    UNESCOdata["Countries"] = []
+    loanerWordData = []
     for result in results:
-        print(result[0])
-        UNESCOdata["ID"].append(result[0])
-        UNESCOdata["Countries"].append(result[1])
-        
+        tmpDict = {}
+        tmpDict["e"] = result[0]
+        tmpDict["i"] = result[1]
+        tmpDict["v"] = result[2] * 5000
+        loanerWordData.append(tmpDict)
 
-    print(UNESCOdata)
-    return jsonify(UNESCOdata)
-
-
-# @app.route("/samples/<sample>")
-# def samples(sample):
-#     """Return `otu_ids`, `otu_labels`,and `sample_values`."""
-#     stmt = db.session.query(Samples).statement
-#     df = pd.read_sql_query(stmt, db.session.bind)
-
-#     # Filter the data based on the sample number and
-#     # only keep rows with values above 1
-#     sample_data = df.loc[df[sample] > 1, ["otu_id", "otu_label", sample]]
-
-#     # Sort by sample
-#     sample_data.sort_values(by=sample, ascending=False, inplace=True)
-
-#     # Format the data to send as json
-#     data = {
-#         "otu_ids": sample_data.otu_id.values.tolist(),
-#         "sample_values": sample_data[sample].values.tolist(),
-#         "otu_labels": sample_data.otu_label.tolist(),
-#     }
-#     return jsonify(data)
+    return jsonify(loanerWordData)
 
 
 if __name__ == "__main__":

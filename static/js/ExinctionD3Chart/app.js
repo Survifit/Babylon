@@ -5,8 +5,8 @@
 
 
 // Define SVG area dimensions
-var svgWidth = 999;
-var svgHeight = 700;
+var svgWidth = 900;
+var svgHeight = 575;
 
 // Define the chart's margins as an object
 var margin = {
@@ -119,7 +119,7 @@ d3.csv("../static/js/ExinctionD3Chart/years.csv", function(error, extinctData) {
     .attr("opacity", 0.5)
     ;
 
-  var toolTip = d3.select("#langDeaths").append("div")
+  var toolTip = d3.select("body").append("div")
     .attr("class", "tooltip");
 
   // Add an onmouseover event to display a tooltip
