@@ -38,8 +38,6 @@ d3.json('../static/js/language_status_UNESCO.json', function(response) {
 });
 
 
-
-console.log('Hello');
 drawGlobe();    
 drawGraticule();
 enableRotation();

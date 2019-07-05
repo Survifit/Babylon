@@ -8,6 +8,7 @@
         <!--CSS Files-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" href="../static/css/style.css">
+        <link rel="stylesheet" href="../static/js/ExinctionD3Chart/style.css">
         <!--Script Files-->
         <!--Bootstrap 4.1-->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -15,27 +16,30 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
         
         <!--Javascript Libraries-->
-        <script src="three.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
         
     </head>
     <body>
         <div class="container">
             <div class="row">
                 <div class="col-md-2" style="background-color:#697F90">
-                    <nav class="nav flex-column">
-                        <a class="nav-link active" href="/">World Languages</a>
-                        <a class="nav-link active" href="/statistics">Families Western Hemisphere</a>
-                        <a class="nav-link" href="/english">English Information</a>
+                    <nav class="nav sticky-top flex-column">
+                        <a class="nav-link " href="/">World Languages</a>
+                        <a class="nav-link" href="/english">Evolution</a>
+                        <a class="nav-link active" href="/statistics">Death</a>                        
                         <a class="nav-link" href="/tables">Tables</a>
                     </nav>
                 </div>
                 <div class="col-md-10" >
-                    <div id="globeArea" style="width: 100%; height: 500px; background-color:#FEBC38"></div>
-                    <div id="globeText" style="width: 100%; height: 150px; background-color:#DBC684"></div>
+                    <header class="title">
+                        <h1>Language Deaths Since 1900</h1>
+                    </header>
+                    <div id="langDeaths"></div>
+                    
                 </div>
             </div>
         </div>
         
-        
+        <script src="../static/js/ExinctionD3Chart/app.js"></script>    
     </body>
 </html>

@@ -10,7 +10,7 @@ var svgHeight = 700;
 
 // Define the chart's margins as an object
 var margin = {
-  top: 80,
+  top: 20,
   right: 60,
   bottom: 60,
   left: 80
@@ -21,7 +21,7 @@ var chartWidth = svgWidth - margin.left - margin.right;
 var chartHeight = svgHeight - margin.top - margin.bottom;
 
 // Select body, append SVG area to it, and set its dimensions
-var svg = d3.select("body")
+var svg = d3.select("#langDeaths")
   .append("svg")
   .attr("width", svgWidth)
   .attr("height", svgHeight);
@@ -35,7 +35,7 @@ var parseTime = d3.timeParse("%Y");
 
 
 // Load data from miles-walked-this-month.csv
-d3.csv("years.csv", function(error, extinctData) {
+d3.csv("../static/js/ExinctionD3Chart/years.csv", function(error, extinctData) {
 
   // Throw an error if one occurs
   if (error) throw error;
@@ -119,7 +119,7 @@ d3.csv("years.csv", function(error, extinctData) {
     .attr("opacity", 0.5)
     ;
 
-  var toolTip = d3.select("body").append("div")
+  var toolTip = d3.select("#langDeaths").append("div")
     .attr("class", "tooltip");
 
   // Add an onmouseover event to display a tooltip

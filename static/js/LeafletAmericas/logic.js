@@ -120,7 +120,7 @@ function createMap(language) {
 
   // actual map and location, zoom level and layer specifications
 
-  var myMap = L.map("map", {
+  var myMap = L.map("langMap", {
     center: [
       32.09, -95.71
     ],

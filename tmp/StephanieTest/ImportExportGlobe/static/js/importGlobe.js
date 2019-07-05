@@ -1,9 +1,9 @@
-var containerOriginal = document.getElementById( "originalArea" );
+var containerOriginal = document.getElementById( "importMap" );
 
 
 var controllerOriginal = new GIO.Controller( containerOriginal );
 
-
+console.log('hello')
 controllerOriginal.addData( loanerWordData );
 controllerOriginal.setInitCountry("GB");
 controllerOriginal.addHalo("#697F90");
