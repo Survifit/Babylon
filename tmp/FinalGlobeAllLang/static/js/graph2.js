@@ -9,6 +9,7 @@ let locations = [];
 const svg = d3.select('svg')
     .attr('width', width).attr('height', height);
 const markerGroup = svg.append('g');
+const SPAMmarkerGroup = svg.append('g');
 const projection = d3.geoOrthographic();
 const initialScale = projection.scale();
 const path = d3.geoPath().projection(projection);
@@ -60,7 +61,8 @@ function drawGlobe() {
                 .style("fill", (d, i) => 'white') //fill color for countries
                 .style("opacity", ".8");
                 //locations = UNESCOData;
-                drawMarkers();                   
+                drawMarkers(); 
+                drawSPAMMarker();                  
         });
 }
 
@@ -81,6 +83,7 @@ function enableRotation() {
         projection.rotate([config.speed * elapsed - 120, config.verticalTilt, config.horizontalTilt]);
         svg.selectAll("path").attr("d", path);
         drawMarkers();
+        drawSPAMMarker();
     });
 }        
 
@@ -107,6 +110,49 @@ function drawMarkers() {
     //console.log([locations.Longitude, locations.Latitude])
     markerGroup.each(function () {
         this.parentNode.appendChild(this);
+    });
+}
+
+var SPAMArray = [-92.9746576, 43.6693306]
+
+console.log(SPAMArray[0])
+
+function drawSPAMMarker() {
+
+    console.log("Draw SPAM markers reached")
+    console.log(SPAMArray)
+    const SPAMmarkers = SPAMmarkerGroup.selectAll('circle')
+        .data(SPAMArray);
+    SPAMmarkers
+        .enter()
+        .append('circle')
+        .merge(SPAMmarkers)
+        .attr("id", "SPAMTooltip")
+        .attr('cx', projection(SPAMArray)[0]) //converts latitude and longitude to x and y values
+        .attr('cy', projection(SPAMArray)[1]) //seems to require having the pair and then choosing which value in the array rather than just d.lon for cx and d.lat for cy
+        .attr('fill', d => {
+            //const coordinate = [d[0], d[1]];
+            //console.log(d);
+            gdistance = d3.geoDistance(SPAMArray, projection.invert(center)); //projection.invert converts x and y back to lat and lon
+            return gdistance > 1.57 ? 'none' : "#ff69b4"; //color of dots
+        })
+        .attr('r', 7); //size of the dot
+    SPAMmarkerGroup.each(function () {
+        this.parentNode.appendChild(this);
+    
+    // create a tooltip
+    var tooltip = d3.select("#globe")
+        .append("div")
+        .style("position", "absolute")
+        .style("visibility", "hidden")
+        .style("color", "#fffff")
+        .text("Let's visit the SPAM Museum!");
+
+    //
+    d3.select("#SPAMTooltip")
+        .on("mouseover", function(){return tooltip.style("visibility", "visible");})
+        .on("mousemove", function(){return tooltip.style("top", (event.pageY-800)+"px").style("left",(event.pageX-800)+"px");})
+        .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
     });
 }
 
