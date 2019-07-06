@@ -119,17 +119,18 @@ d3.csv("../static/js/ExinctionD3Chart/years.csv", function(error, extinctData) {
     .attr("opacity", 0.5)
     ;
 
-  var toolTip = d3.select("body").append("div")
+  var toolTip = d3.select("#langDeaths").append("div")
     .attr("class", "tooltip");
 
   // Add an onmouseover event to display a tooltip
   // ========================================================
   circlesGroup.on("mouseover", function(extinctData) {
-    toolTip.style("display", "block");
+    toolTip.style("display", "inline-flex");
     toolTip.html(`Cumlative Total: ${extinctData.cumulative} <br> Language Deaths in ${extinctData.year}: <br> ${extinctData.field1} <br>${extinctData.field2} <br>${extinctData.field3} <br>${extinctData.field4} <br>${extinctData.field5} <br>${extinctData.field6} <br>${extinctData.field7} <br>${extinctData.field8} <br>${extinctData.field9} <br>${extinctData.field10} <br>${extinctData.field11} <br>${extinctData.field12}`)
-      .style("left", d3.event.pageX + "px")
-      .style("top", d3.event.pageY + "px")
-      .attr("opacity", 0.5);
+      .style("left", (d3.event.pageX -250) + "px")
+      .style("top", (d3.event.pageY - 800) + "px")
+      .attr("opacity", 0.5)
+      .attr("padding", 0);
   })
     // Add an onmouseout event to make the tooltip invisible
     .on("mouseout", function() {

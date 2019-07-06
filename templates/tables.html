@@ -15,31 +15,34 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
         
         <!--Javascript Libraries-->
-        <script src="three.min.js"></script>
+        <script src="https://www.w3schools.com/lib/w3.js"></script>
         
     </head>
     <body>
         <div class="container">
             <div class="row">
                 <div class="col-md-2 leftside">
-                    <img src="../static/images/Babylon.png" style="max-width: 90%; padding-top: 5%; padding-left: 5%; padding-bottom:10px">
+                    <nav class="nav sticky-top flex-column nav-pills">
+                        <img src="../static/images/Babylon.png" style="max-width: 90%; padding-top: 5%; padding-left: 5%; padding-bottom:10px">
                     
-                    <nav class="nav sticky-toop flex-column nav-pills">
                         <a class="nav-link border border-dark border-rounded" href="/">World Languages</a>
                         <a class="nav-link border border-dark border-rounded" href="/english#families">Evolution</a>
                         <a class="nav-link border border-dark border-rounded" href="/statistics">Death</a>                        
                         <a class="nav-link border border-dark border-rounded active" href="/tables">Tables</a>
+                   
+                        <img src="../static/images/Babylon.png" style="max-width: 90%; padding-top: 5%; padding-left: 5%">
                     </nav>
-
-                    <img src="../static/images/Babylon.png" style="max-width: 90%; padding-top: 5%; padding-left: 5%">
                 </div>
                 <div class="col-md-10" >
-                    <div id="globeArea" style="width: 100%; height: 500px; background-color:#FEBC38"></div>
+                    <h1 style="text-align: center; background-color: #697F90; padding-bottom: 10px">UNESCO Language Data</h1>
+                    
+                    <div id="datatable" w3-include-html="/unescoTable"></div>
+                    
                     
                 </div>
             </div>
         </div>
         
-        
+        <script>w3.includeHTML();</script>
     </body>
 </html>

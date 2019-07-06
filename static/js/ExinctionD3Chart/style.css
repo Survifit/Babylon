@@ -82,7 +82,7 @@ h1 {
 
 
 /* .tooltip {
-  position: absolute;
+  position: relative;
   width: 350px;
   height: 125px;
   padding: 10px;
@@ -97,7 +97,8 @@ h1 {
 } */
 .tooltip {
   position: relative;
-  
+  height: auto;
+  width: auto;
   padding: 10px;
   padding-right: 30px;
   padding-top: 8px;
@@ -105,9 +106,9 @@ h1 {
   color: darkorange;
   text-align: left;
   background: white;
-  border: 0;
+  border: 0px solid darkorange;
   border-radius: 10px;
-  opacity: 1;
+  opacity: .9;
 }
 
 

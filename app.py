@@ -62,6 +62,10 @@ def spam():
     """Return the hidden Spam page"""
     return render_template("spam.html")
 
+@app.route("/unescoTable")
+def unescoTable():
+    """Return the html table"""
+    return render_template("unescoData.htm")
 
 @app.route("/api/unesco")
 def unesco():

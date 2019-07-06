@@ -3,7 +3,7 @@
     padding-right: 0;
 }
 
-.col-md-2, .col-md-8 {
+.col-md-2, .col-md-8, .col-md-10 {
     padding-right: 0px !important;
     padding-left: 0px !important;
 }
@@ -56,4 +56,12 @@ p {
 
 #langDeaths {
     max-width:100%;
+}
+
+.datatable {
+    background-color: #D2DADF;
+}
+
+.table {
+    background-color: #D2DADF;
 }
